@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Home</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -67,8 +67,10 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
+
+                    {{-- auth è un if -> se l'utente è loggato vedrà a dx 'My Profile', se non è loggato vedrà la page del login/register  --}}
+                    @auth                                        
+                        <a href="{{ url('/admin') }}">My profile</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -76,15 +78,17 @@
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
+                    {{-- /auth --}}
+
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                   Benvenuto!
                 </div>
 
-                <div class="links">
+                {{-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
@@ -93,9 +97,9 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </div> --}}
 
-            </div>
+            </div> 
             
         </div>
     </body>

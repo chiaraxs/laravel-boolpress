@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// rotta che rimanda alla view welcome.blade
+// rotta che rimanda alla view pubblica welcome.blade
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,18 +21,22 @@ Route::get('/', function () {
 Auth::routes();
 
 
-// admin routes group -> rotte che rimandano alla view dell'user login in /admin
+// admin routes group -> rotte che rimandano alla view privata dell'user login in /admin
+// middelware -> si interpone tra server (che riceve la richiesta dal browser) e controller ->
+// si occupa di gestire/autorizzare/non autorizzare la richiesta del server al controller
 Route::middleware('auth')
-->namespace('Admin')
-->prefix('admin')
-->name('admin.')
-->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
-});
+    ->namespace('Admin')
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', 'HomeController@index')
+            ->name('home');
+    }
+);
 // /admin routes group
 
-
-// rotta che rimanda alla view home.blade (con app.vue) indipendentemente da qualsiasi inserimento nell'uri dopo / 
+// ALERT: ROTTA CHE VA MESSA SEMPRE ALLA FINE DELLE ALTRE ROTTE PERCHE' BLOCCA LE SUCCESSIVE
+// rotta generica/dinamica che rimanda alla view pubblica home.blade (con app.vue) indipendentemente da qualsiasi inserimento nell'uri dopo / 
 // -> http://127.0.0.1:8000/provaprovaciao
 Route::get("{any?}", function () {
     return view("home");

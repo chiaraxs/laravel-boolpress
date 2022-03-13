@@ -109,10 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-/* harmony default export */ __webpack_exports__["default"] = ({//    name: "App",
-  //    components: {}
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -13555,6 +13552,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// import del componente resources/js/views/App.vue
 
 
 /**
@@ -13567,7 +13565,8 @@ var app = new Vue({
   el: '#app',
   render: function render(h) {
     return h(_views_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  }
+  } // mostra App.vue all'avvio di Vue
+
 });
 
 /***/ }),

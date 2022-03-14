@@ -17,6 +17,8 @@
                         {{-- foreach --}}
                         @foreach ($posts as $post )
                             <li class="list-group-item">{{$post->title}}</li>
+                            <a href="{{route('admin.posts.show', $post->slug)}}"></a>
+                            <a href="{{route('admin.posts.edit', $post->slug)}}"></a>
                         @endforeach
                         {{-- /foreach --}}
 

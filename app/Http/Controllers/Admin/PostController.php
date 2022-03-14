@@ -39,39 +39,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $newPost = new Post();
-        $newPost->fill($request->validate([
+        $post = new Post();
+        $post->fill($request->validate([
             'title'=> 'required|min:5',
             'content'=> 'required|min:10|max:200'
         ]));
 
-        // SLUG -> rende unico il titolo del post -> se c'è un doppione aggiunge, con il counter, un id incrementale
-        // genero lo slug
-        $slug = Str::slug($newPost->title);
 
-        // fase di controllo: $exists dice se esiste già una riga con quello slug
-        // il first() restituisce null quando non trova l’elemento (quindi lo slug è univoco)
-        // Quindi vuoi ciclare fino a quando $exists non diventa null (false)
-        // Fino a quando non succede, incrementi il contatore e provi un nuovo slug
-        // se il valore non esiste -> assegno il nuovo valore al $newSlug
-        $exists = Post::where('slug', $slug)->first();
-        $counter = 1;
-        
-        while($exists){
-            $newSlug = $slug . '-' . $counter;
-            $counter++;
-            $exists = Post::where('slug', $newSlug)->first();
+        $post->slug = $this->generateUniqueSlug($request['title']);
 
-            if(!$exists) {
-                $slug = $newSlug;
-            }
-        }
-
-        // assegno il valore di $slug al nuovo post
-        $newPost->slug = $slug;
-        // /SLUG
-
-        $newPost->save();
+        $post->save();
         return redirect()->route('admin.posts.index');
     }
 
@@ -81,9 +58,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = Post::where('slug', $slug)->first();
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -106,7 +84,19 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:5',
+            'content' => 'required|min:10|max:200'
+        ]);
+
+        $post = Post::findOrFail($id);
+
+        if ($data['title'] !== $post->title) {
+            $data['slug'] = $this->generateUniqueSlug($data['title']);
+        }
+
+        $post->update($data);
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -119,4 +109,31 @@ class PostController extends Controller
     {
         //
     }
+
+    protected function generateUniqueSlug($postTitle) {
+        // SLUG -> rende unico il titolo del post -> se c'è un doppione aggiunge, con il counter, un id incrementale
+        // genero lo slug
+        $slug = Str::slug($postTitle);
+
+        // fase di controllo: $exists dice se esiste già una riga con quello slug
+        // il first() restituisce null quando non trova l’elemento (quindi lo slug è univoco)
+        // Quindi vuoi ciclare fino a quando $exists non diventa null (false)
+        // Fino a quando non succede, incrementi il contatore e provi un nuovo slug
+        // se il valore non esiste -> assegno il nuovo valore al $newSlug
+        $exists = Post::where('slug', $slug)->first();
+        $counter = 1;
+
+        while ($exists) {
+            $newSlug = $slug . '-' . $counter;
+            $counter++;
+
+            $exists = Post::where('slug', $newSlug)->first();
+
+            if (!$exists) {
+                $slug = $newSlug;
+            };
+        };
+
+    }
 }
+

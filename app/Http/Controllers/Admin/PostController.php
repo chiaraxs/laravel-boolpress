@@ -45,11 +45,33 @@ class PostController extends Controller
             'content'=> 'required|min:10|max:200'
         ]));
 
+        // SLUG -> rende unico il titolo del post -> se c'è un doppione aggiunge, con il counter, un id incrementale
+        // genero lo slug
         $slug = Str::slug($newPost->title);
 
-        $newPost->slug = $slug;
-        $newPost->save();
+        // fase di controllo: $exists dice se esiste già una riga con quello slug
+        // il first() restituisce null quando non trova l’elemento (quindi lo slug è univoco)
+        // Quindi vuoi ciclare fino a quando $exists non diventa null (false)
+        // Fino a quando non succede, incrementi il contatore e provi un nuovo slug
+        // se il valore non esiste -> assegno il nuovo valore al $newSlug
+        $exists = Post::where('slug', $slug)->first();
+        $counter = 1;
+        
+        while($exists){
+            $newSlug = $slug . '-' . $counter;
+            $counter++;
+            $exists = Post::where('slug', $newSlug)->first();
 
+            if(!$exists) {
+                $slug = $newSlug;
+            }
+        }
+
+        // assegno il valore di $slug al nuovo post
+        $newPost->slug = $slug;
+        // /SLUG
+
+        $newPost->save();
         return redirect()->route('admin.posts.index');
     }
 

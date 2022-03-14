@@ -19,10 +19,10 @@
                         @csrf
 
                         {{-- title gestuti con errori & old --}}
-                        <div class="mb-2">
+                        <div class="mb-2 ">
                             <label for="title" class="me-4">Title</label>
-                            <input type="text" name="title" placeholder="Insert Title" @error('title') is-invalid @enderror value="{{ old('title') }}" required>
-                            
+                            <input type="text" name="title" placeholder="Insert Title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required>
+
                             @error('title')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -33,7 +33,7 @@
                         {{-- content gestito con errori & old --}}
                         <div>
                             <label for="content" class="me-1">Content</label>
-                            <textarea name="content" cols="40" rows="10" @error('content') is-invalid @enderror placeholder="Insert your post's content" required>{{ old('content') }}</textarea>
+                            <textarea name="content" cols="40" rows="10" class="form-control @error('title') is-invalid @enderror" placeholder="Insert your post's content" required>{{ old('content') }}</textarea>
 
                             @error('content')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -43,7 +43,7 @@
                         {{-- /content --}}
 
 
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center mt-4">
                             {{-- submit button --}}
                             <button type="submit" class="btn btn-primary mx-2" value="Create post">Create</button>
                             {{-- /submit button --}}
@@ -53,7 +53,6 @@
                             {{-- /link per annullare il post appena creato --}}
                         </div>
 
-                       
                     </form>
                     {{-- /form --}}
 

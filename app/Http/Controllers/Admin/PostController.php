@@ -91,6 +91,9 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
 
+        // se il titolo del post è diverso dal titolo del post che ho nel mio db -> parte la funzione dello slug
+        // cioè -> se l'utente ha cambiato titolo, rigenera lo slug
+        // altrimenti ->
         if ($data['title'] !== $post->title) {
             $data['slug'] = $this->generateUniqueSlug($data['title']);
         }
@@ -131,8 +134,11 @@ class PostController extends Controller
 
             if (!$exists) {
                 $slug = $newSlug;
-            };
-        };
+            }
+        }
+        
+        // ritorna lo $slug
+        return $slug;
 
     }
 }

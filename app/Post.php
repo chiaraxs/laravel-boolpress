@@ -17,4 +17,9 @@ class Post extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    // relazione 1 a 1 -> 1 post a 1 categoria
+    public function category(){
+        return $this->belongsTo('App\Category');
+    }
 }

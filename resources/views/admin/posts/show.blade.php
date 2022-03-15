@@ -22,6 +22,14 @@
                 </div>
                 {{-- /content --}}
 
+                {{-- dettagli user --}}
+                <div>
+                    <p class="ms-3"> User: {{ $post->user->name }} 
+                    <br>
+                    Mail: {{ $post->user->email }}</p>
+                </div>
+                {{-- dettagli user --}}
+
                 {{-- edit/destroy container --}}
                 <div class="d-flex justify-content-center">
                     

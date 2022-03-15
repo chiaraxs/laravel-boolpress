@@ -12,19 +12,19 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-      
+
         $categories = [
             ["type" => "historical", "description" => "historical post"],
             ["type" => "gossip", "description" => "gossip post"],
             ["type" => "travel", "description" => "travel post"],
             ["type" => "crime", "description" => "crime post"],
-                
+
         ];
 
         foreach ($categories as $category) {
-            $newCat = new Category();
-            $newCat->fill($category);
-            $newCat->save();
-        }  
+            $newCategory = new Category();
+            $newCategory->fill($category);
+            $newCategory->save();
+        }
     }
 }

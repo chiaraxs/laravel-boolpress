@@ -35,7 +35,7 @@
                 {{-- route che rimanda a posts --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{route ('admin.posts.index')}}" role="button">
-                       Your Posts
+                      Posts
                     </a>
                 </li>
                 {{-- /route che rimanda a posts --}}

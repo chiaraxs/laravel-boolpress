@@ -18,11 +18,17 @@
                         @foreach ($posts as $post )
                             <li class="list-group-item">{{$post->title}}</li>
                             
+                            {{-- category --}}
+                            {{-- se la categoria esiste -> la mostra --}}
+                            {{-- altrimenti mostra stringa 'no category' --}}
+                            <li class="list-group-item">{{ isset($post->category) ? $post->category->type : 'No Category'}}</li>
+                            {{-- /category --}}
+
                             {{-- link to details --}}
                             <div class="d-flex justify-content-center mx-2 my-2">
                                 <a href="{{route('admin.posts.show', $post->slug)}}">Details</a>
                             </div>
-                            {{-- /link to details --}}
+                            {{-- /link to details --}}  
 
                         @endforeach
                         {{-- /foreach --}}

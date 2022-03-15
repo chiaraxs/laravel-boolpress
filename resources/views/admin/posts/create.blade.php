@@ -42,6 +42,18 @@
                         </div>
                         {{-- /content --}}
 
+                        {{-- category select --}}
+                        <div class="mb-2">
+                            <label>Category</label>
+                            <select name="category_id" class="form-select">
+                                <option value="">----</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @if (old('category_id') === $category->id) selected @endIf>
+                                    {{ $category->type }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        {{-- /category select --}}
 
                         <div class="d-flex justify-content-center mt-4">
                             {{-- submit button --}}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view("admin.posts.create", compact("categories"));
     }
 
     /**
@@ -43,7 +45,8 @@ class PostController extends Controller
         $post = new Post();
         $post->fill($request->validate([
             'title'=> 'required|min:5',
-            'content'=> 'required|min:10'
+            'content'=> 'required|min:10',
+            'category_id'=>'nullable'
         ]));
 
 
@@ -75,8 +78,12 @@ class PostController extends Controller
     public function edit($slug)
     {
         $post = Post::where('slug', $slug)->first();
+        $categories = Category::all();
 
-        return view('admin.posts.edit', compact('post'));
+        return view('admin.posts.edit', [
+            'post'=> $post,
+            'categories'=> $categories
+        ]);
     }
 
     /**
@@ -90,7 +97,8 @@ class PostController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|min:5',
-            'content' => 'required|min:10|max:200'
+            'content' => 'required|min:10|max:200',
+            'category_id'=> 'nullable',
         ]);
 
         $post = Post::findOrFail($id);

@@ -37,6 +37,19 @@
                         </div>
                         {{-- /content --}}
 
+                        {{-- category select --}}
+                        <div class="mb-2">
+                            <label>Category</label>
+                            <select name="category_id" class="form-select">
+                                <option value="">----</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" @if ($post->category_id === $category->id) selected @endIf>
+                                        {{ $category->type }}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        {{-- /category select --}}
+
                         <div class="form-group">
                             {{-- submit button --}}
                             <button type="submit" class="btn btn-primary mx-2" value="Create post">Edit</button>

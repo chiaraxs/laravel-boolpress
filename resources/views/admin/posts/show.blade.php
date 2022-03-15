@@ -30,6 +30,15 @@
                 </div>
                 {{-- dettagli user --}}
 
+                {{-- category --}}
+                @if(isset($post->category))
+                    <div>
+                        <p class="ms-3"> Category: {{ $post->category->type }}</p>
+                    </div>
+                @endif
+                {{-- /category --}}
+
+
                 {{-- edit/destroy container --}}
                 <div class="d-flex justify-content-center">
                     

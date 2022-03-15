@@ -12,4 +12,9 @@ class Post extends Model
         'content',
         'slug',
     ];
+
+    //relazione 1 a molti -> 1 utente a molti posts
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

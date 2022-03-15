@@ -42,7 +42,7 @@ class PostController extends Controller
         $post = new Post();
         $post->fill($request->validate([
             'title'=> 'required|min:5',
-            'content'=> 'required|min:10|max:200'
+            'content'=> 'required|min:10'
         ]));
 
 
@@ -70,9 +70,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $post = Post::where('slug', $slug)->first();
+
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -99,7 +101,7 @@ class PostController extends Controller
         }
 
         $post->update($data);
-        return redirect()->route('admin.posts.show', $post->id);
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**
@@ -108,9 +110,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $post = Post::where('slug', $slug)->first();
+        $post->delete();
+        return redirect()->route('admin.posts.index');
+    
     }
 
     protected function generateUniqueSlug($postTitle) {

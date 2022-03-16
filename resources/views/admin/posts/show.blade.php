@@ -33,21 +33,20 @@
                 {{-- category --}}
                 @if(isset($post->category))
                     <div>
-                        <p class="ms-3"> Category: {{ $post->category->type }}</p>
+                        <p class="ms-3"><span class="fw-bold">Category:</span> {{ $post->category->type }}</p>
                     </div>
                 @endif
                 {{-- /category --}}
 
                 {{-- tags --}}
-                @if(isset($post->tag))
-                    <div>
-                        <p class="ms-3"> Tags: {{ $post->tag->name }}</p>
-                    </div>
-                @endif
+                <div class="ms-3">
+                    <span class="fw-bold">Tags:</span>
+                    @foreach ($post->tags as $tag )
+                        <span class="badge bg-info text-dark">{{$tag->name}}</span>
+                    @endforeach
+                </div>
                 {{-- /tags --}}
-
-
-
+                
                 {{-- edit/destroy container --}}
                 <div class="d-flex justify-content-center">
                     

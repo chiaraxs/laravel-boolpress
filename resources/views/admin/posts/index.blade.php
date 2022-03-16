@@ -16,17 +16,21 @@
 
                         {{-- foreach --}}
                         @foreach ($posts as $post )
-                            <li class="list-group-item fw-bold">{{$post->title}}</li>
+                           
+
+                            {{-- title & link details --}}
+                            <div class="text-center">
+                                <p class="fw-bold mt-2">{{$post->title}}</p>
+                                <a href="{{route('admin.posts.show', $post->slug)}}">Details</a>
+                            </div>
+                            {{-- /title & link to details --}}
+
 
                             {{-- category --}}
                             {{-- se la categoria esiste -> la mostra --}}
                             {{-- altrimenti mostra stringa 'no category' --}}
-                            <li class="list-group-item fst-italic">{{ isset($post->category) ? $post->category->type : 'No Category'}}</li>
+                            <li class="list-group-item fst-italic">Category: {{ isset($post->category) ? $post->category->type : 'no Category'}}</li>
                             {{-- /category --}}
-
-                            {{-- tags --}}
-                            <li class="list-group-item fst-italic">{{ isset($post->tag) ? $post->tag->name : 'No Tags'}}</li>
-                            {{-- /tags --}}
 
                             {{-- dettagli user --}}
                              <li class="list-group-item">
@@ -36,15 +40,29 @@
                                     <br>
                                     Mail: {{ $post->user->email }}
                                 </p>
-                             </li>
+                            </li>
                             {{-- dettagli user --}}
 
+                            {{-- tags --}}
+                            <li class="list-group-item">
 
-                            {{-- link to details --}}
-                            <div class="d-flex justify-content-center mx-2 my-2">
-                                <a href="{{route('admin.posts.show', $post->slug)}}">Details</a>
-                            </div>
-                            {{-- /link to details --}}  
+                                <div class="fw-bold d-flex justify-content-center mt-2">
+
+                                    {{-- se esiste il tag -> stampamelo --}}
+                                    {{-- altrimenti stampa -> 'No tags' --}}
+                                    @forelse ($post->tags as $tag )
+                                        <span class="badge bg-info text-dark mx-1 mb-3">{{$tag->name}}</span>
+                                        @empty
+                                        <p>No Tags</p>
+                                    @endforelse
+
+                                </div>
+                            </li>
+                            {{-- /tags --}}
+
+                            {{-- hr separatore per ogni post --}}
+                            <hr style="height:3px; background-color: #1E90FF;">
+                            {{-- /hr separatore per ogni post --}}
 
                         @endforeach
                         {{-- /foreach --}}

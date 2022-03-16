@@ -133,6 +133,7 @@ class PostController extends Controller
         // $post->tags()->detach();
         // $post->tags()->attach($data['tags']);
 
+        // se esiste il tag -> sync
         // il sync fa detach e attach contemporaneamente
         // il detach solo per gli elementi non più esistenti
         // l'attach solo dei nuovi elementi

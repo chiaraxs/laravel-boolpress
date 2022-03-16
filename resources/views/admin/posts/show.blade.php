@@ -42,7 +42,7 @@
                 <div class="ms-3">
                     <span class="fw-bold">Tags:</span>
                     @foreach ($post->tags as $tag )
-                        <span class="badge bg-info text-dark">{{$tag->name}}</span>
+                        <a href="#"><span class="badge bg-info text-dark">#{{$tag->name}}</span></a>
                     @endforeach
                 </div>
                 {{-- /tags --}}

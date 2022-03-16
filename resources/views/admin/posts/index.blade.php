@@ -51,7 +51,7 @@
                                     {{-- se esiste il tag -> stampamelo --}}
                                     {{-- altrimenti stampa -> 'No tags' --}}
                                     @forelse ($post->tags as $tag )
-                                        <span class="badge bg-info text-dark mx-1 mb-3">{{$tag->name}}</span>
+                                        <a href="#"><span class="badge bg-info text-dark mx-1 mb-3">#{{$tag->name}}</span></a>
                                         @empty
                                         <p>No Tags</p>
                                     @endforelse

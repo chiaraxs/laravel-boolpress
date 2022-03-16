@@ -17,7 +17,7 @@
 
                         {{-- title --}}
                         <div class="mb-3">
-                            <label>Title</label>
+                            <label class="fw-bold">Title</label>
                             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Insert title" value="{{ old('title', $post->title) }}" required>
                             @error('title')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -28,7 +28,7 @@
 
                         {{-- content --}}
                         <div class="mb-3">
-                            <label>Content</label>
+                            <label class="fw-bold">Content</label>
                             <textarea name="content" rows="10" class="form-control @error('content') is-invalid @enderror" placeholder="Insert your post's content" required>{{ old('content', $post->content) }}</textarea>
 
                             @error('content')
@@ -39,7 +39,7 @@
 
                         {{-- category select --}}
                         <div class="mb-2">
-                            <label>Category</label>
+                            <label class="fw-bold">Category</label>
                             <select name="category_id" class="form-select">
                                 <option value="">----</option>
                                     @foreach ($categories as $category)
@@ -49,6 +49,23 @@
                             </select>
                         </div>
                         {{-- /category select --}}
+
+                        {{-- tags checkbox --}}
+                        {{-- n.b. -> name="tags[]" in input -> grazie alle quadre finali, rimanda al server un array di tags --}}
+                        {{-- contains -> se i tags contengono il tag ciclato -> checked (selezionati di default)-> altrimenti non sono pre-selezionati --}}
+                        <div class="mb-2">
+                            <p class="fw-bold">Tags</p>
+                            
+                            @foreach ($tags as $tag)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="tag_{{$tag->id}}" value="{{$tag->id}}" name="tags[]"
+                                    {{$post->tags->contains($tag) ?  'checked' : ''}}>
+                                    <label class="form-check-label" for="tag_{{$tag->id}}">{{$tag->name}}</label>
+                                </div>
+                            @endforeach
+                            
+                        </div>
+                        {{-- /tags checkbox --}}
 
                         <div class="form-group">
                             {{-- submit button --}}

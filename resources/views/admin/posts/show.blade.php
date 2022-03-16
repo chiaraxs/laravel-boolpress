@@ -38,6 +38,15 @@
                 @endif
                 {{-- /category --}}
 
+                {{-- tags --}}
+                @if(isset($post->tag))
+                    <div>
+                        <p class="ms-3"> Tags: {{ $post->tag->name }}</p>
+                    </div>
+                @endif
+                {{-- /tags --}}
+
+
 
                 {{-- edit/destroy container --}}
                 <div class="d-flex justify-content-center">

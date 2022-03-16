@@ -24,6 +24,10 @@
                             <li class="list-group-item fst-italic">{{ isset($post->category) ? $post->category->type : 'No Category'}}</li>
                             {{-- /category --}}
 
+                            {{-- tags --}}
+                            <li class="list-group-item fst-italic">{{ isset($post->tag->name) ? $post->tag->name : 'No Tags'}}</li>
+                            {{-- /tags --}}
+
                             {{-- dettagli user --}}
                              <li class="list-group-item">
                                 <p class="ms-3 fw-light"><span class="text-decoration-underline"> Author:</span>

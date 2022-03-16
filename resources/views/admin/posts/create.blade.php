@@ -55,6 +55,22 @@
                         </div>
                         {{-- /category select --}}
 
+                        {{-- tags checkbox --}}
+                        {{-- n.b. -> name="tags[]" in input -> grazie alle quadre finali, rimanda al server un array di tags --}}
+                        <div class="mb-2">
+                            <p class="fw-bold">Tags</p>
+
+                            @foreach ($tags as $tag)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="tag_{{$tag->id}}" value="{{$tag->id}}" name="tags[]">
+                                <label class="form-check-label" for="tag_{{$tag->id}}">{{$tag->name}}</label>
+                            </div>
+                            @endforeach
+
+                        </div>
+                        {{-- /tags checkbox --}}
+
+
                         <div class="d-flex justify-content-center mt-4">
                             {{-- submit button --}}
                             <button type="submit" class="btn btn-primary mx-2" value="Create post">Create</button>

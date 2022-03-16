@@ -25,7 +25,7 @@
                             {{-- /category --}}
 
                             {{-- tags --}}
-                            <li class="list-group-item fst-italic">{{ isset($post->tag->name) ? $post->tag->name : 'No Tags'}}</li>
+                            <li class="list-group-item fst-italic">{{ isset($post->tag) ? $post->tag->name : 'No Tags'}}</li>
                             {{-- /tags --}}
 
                             {{-- dettagli user --}}

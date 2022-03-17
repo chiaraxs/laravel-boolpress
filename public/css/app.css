@@ -12178,3 +12178,28 @@ fieldset:disabled .btn {
   }
 }
 
+body {
+  background-color: #FFE4E1;
+}
+
+body a,
+body hr {
+  color: #FF69B4;
+}
+
+body .badge-pink {
+  background-color: #DA70D6;
+}
+
+body .btn-mint {
+  background-color: #B0E0E6;
+}
+
+body .btn-plum {
+  background-color: #DDA0DD;
+}
+
+body .title {
+  color: #585142;
+}
+

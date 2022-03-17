@@ -62,7 +62,9 @@ class PostController extends Controller
 
         $post->save();
 
-        $post->tags()->attach($data['tags']);
+        if (key_exists("tags", $data)) {
+            $post->tags()->attach($data["tags"]);
+        }
 
         return redirect()->route('admin.posts.index');
     }

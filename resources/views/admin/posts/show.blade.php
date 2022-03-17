@@ -13,7 +13,7 @@
             <div class="card">
                 
                 {{-- title --}}
-                <div class="card-header d-flex">
+                <div class="card-header d-flex title">
                    
                    {{$post->title}}
 
@@ -47,7 +47,6 @@
                 </div>
                 {{-- dettagli ora/data post --}}
 
-
                 {{-- category --}}
                 @if(isset($post->category))
                     <div>
@@ -60,7 +59,7 @@
                 <div class="ms-3">
                     <span class="fw-bold">Tags:</span>
                     @foreach ($post->tags as $tag )
-                        <a href="#"><span class="badge bg-info text-dark">#{{$tag->name}}</span></a>
+                        <a href="#"><span class="badge badge-pink">#{{$tag->name}}</span></a>
                     @endforeach
                 </div>
                 {{-- /tags --}}
@@ -69,7 +68,7 @@
                 <div class="d-flex justify-content-center">
                     
                     {{-- edit button --}}
-                    <a href="{{route('admin.posts.edit', $post->slug)}}" class="btn btn-info me-2 mb-2">Edit your post</a>
+                    <a href="{{route('admin.posts.edit', $post->slug)}}" class="btn btn-mint me-2 mb-2">Edit your post</a>
                     {{-- edit button --}}
 
                     {{-- destroy button --}}
@@ -78,7 +77,7 @@
 
                         @method('delete')
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-plum">Delete</button>
                     </form>
                     {{-- /destroy button --}}
 

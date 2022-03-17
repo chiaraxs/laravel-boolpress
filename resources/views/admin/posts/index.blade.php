@@ -21,14 +21,12 @@
                         {{-- foreach --}}
                         @foreach ($posts as $post )
                            
-
                             {{-- title & link details --}}
                             <div class="text-center">
-                                <p class="fw-bold mt-2">{{$post->title}}</p>
+                                <p class="fw-bold mt-2 title fs-5 text-decoration-underline">{{$post->title}}</p>
                                 <a href="{{route('admin.posts.show', $post->slug)}}">Details</a>
                             </div>
                             {{-- /title & link to details --}}
-
 
                             {{-- category --}}
                             {{-- se la categoria esiste -> la mostra --}}
@@ -57,9 +55,7 @@
                                     Last update: {{ $post->updated_at->diffForHumans(['$post->updated_at' => Carbon::ONE_DAY_WORDS]) }}
                                 </p>
                             </li> 
-
-
-                            {{-- dettagli ora/data post --}}
+                            {{-- /dettagli ora/data post --}}
 
                             {{-- tags --}}
                             <li class="list-group-item">
@@ -69,7 +65,7 @@
                                     {{-- se esiste il tag -> stampamelo --}}
                                     {{-- altrimenti stampa -> 'No tags' --}}
                                     @forelse ($post->tags as $tag )
-                                        <a href="#"><span class="badge bg-info text-dark mx-1 mb-3">#{{$tag->name}}</span></a>
+                                        <a href="#"><span class="badge badge-pink mx-1 mb-3">#{{$tag->name}}</span></a>
                                         @empty
                                         <p>No Tags</p>
                                     @endforelse
@@ -79,7 +75,7 @@
                             {{-- /tags --}}
 
                             {{-- hr separatore per ogni post --}}
-                            <hr style="height:3px; background-color: #1E90FF;">
+                            <hr style="height:3px">
                             {{-- /hr separatore per ogni post --}}
 
                         @endforeach

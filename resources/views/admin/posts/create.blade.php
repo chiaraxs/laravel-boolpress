@@ -73,11 +73,11 @@
 
                         <div class="d-flex justify-content-center mt-4">
                             {{-- submit button --}}
-                            <button type="submit" class="btn btn-primary mx-2" value="Create post">Create</button>
+                            <button type="submit" class="btn btn-mint mx-2" value="Create post">Create</button>
                             {{-- /submit button --}}
 
                             {{-- link per annullare il post appena creato --}}
-                            <a href="{{ route('admin.posts.index')}}" class="btn btn-primary">Undo</a>
+                            <a href="{{ route('admin.posts.index')}}" class="btn btn-plum">Undo</a>
                             {{-- /link per annullare il post appena creato --}}
                         </div>
 

@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@php
+    use Carbon\Carbon;
+@endphp
+
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -29,6 +35,18 @@
                     Mail: {{ $post->user->email }}</p>
                 </div>
                 {{-- dettagli user --}}
+
+                {{-- dettagli ora/data post --}}
+                <div>
+                    <p class="ms-3 fw-light"><span class="text-decoration-underline">Post details:</span>
+                        <br>
+                        Update: {{ $post->created_at->format('l jS \\of F Y h:i:s A') }}
+                        <br>
+                        Last update: {{ $post->updated_at->diffForHumans(['$post->updated_at' => Carbon::ONE_DAY_WORDS]) }}
+                    </p>
+                </div>
+                {{-- dettagli ora/data post --}}
+
 
                 {{-- category --}}
                 @if(isset($post->category))

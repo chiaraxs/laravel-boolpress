@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+    use Carbon\Carbon;
+@endphp
+
 
 
 @section('content')
@@ -42,6 +46,20 @@
                                 </p>
                             </li>
                             {{-- dettagli user --}}
+
+                            {{-- dettagli ora/data post --}}
+                            <li class="list-group-item">
+                                <p class="ms-3 fw-light"><span class="text-decoration-underline">Post details:</span>
+                                    <br>
+                                    Update: {{ $post->created_at->format('l jS \\of F Y h:i:s A') }}
+
+                                    <br>
+                                    Last update: {{ $post->updated_at->diffForHumans(['$post->updated_at' => Carbon::ONE_DAY_WORDS]) }}
+                                </p>
+                            </li> 
+
+
+                            {{-- dettagli ora/data post --}}
 
                             {{-- tags --}}
                             <li class="list-group-item">

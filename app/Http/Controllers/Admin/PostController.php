@@ -137,10 +137,13 @@ class PostController extends Controller
         // il sync fa detach e attach contemporaneamente
         // il detach solo per gli elementi non più esistenti
         // l'attach solo dei nuovi elementi
-        if (key_exists("tags", $data)) {
-            $post->tags()->sync($data['tags']);
-        } 
+        // altrimenti -> detach
 
+        if (key_exists("tags", $data)) {
+            $post->tags()->sync($data["tags"]);
+        } else {
+            $post->tags()->detach();
+        }
 
         return redirect()->route('admin.posts.show', $post->slug);
     }

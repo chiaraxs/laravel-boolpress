@@ -74,14 +74,17 @@
 </template>
 
 <script>
+// import dayjs from 'dayjs';
 import axios from 'axios';
+
+
 
 export default {
     name: "Main",
     data() {
         return {
             posts: [], // array vuoto che verrà popolato con chiamata api
-            pagination: {}   // variabile dove salvo il valore corrente della pagination
+            pagination: {},   // variabile dove salvo il valore corrente della pagination
         }
     },
     methods:{
@@ -92,11 +95,13 @@ export default {
                 this.posts = Response.data.data;
                 console.log(Response.data.data);
             })
-        }
+        },
+        // getDate(date){
+        // }
     },
     mounted(){
         this.getPosts();
-    }
+    },
 }
 </script>
 

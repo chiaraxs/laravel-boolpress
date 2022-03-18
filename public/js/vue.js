@@ -2008,6 +2008,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+// import dayjs from 'dayjs';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Main",
@@ -2029,7 +2030,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.posts = Response.data.data;
         console.log(Response.data.data);
       });
-    }
+    } // getDate(date){
+    // }
+
   },
   mounted: function mounted() {
     this.getPosts();

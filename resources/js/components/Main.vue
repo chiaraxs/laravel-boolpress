@@ -32,10 +32,15 @@
                             <!-- /category -->
 
                             <!-- tags -->
-                            <div v-for="tag in tags" :key="tag.id" >
+                            <div class="d-flex justify-content-center" v-for="tag in post.tags" :key="tag.id" >
                                 <span v-if="tag.name" class="badge badge-pink mx-1 mb-3">#{{tag.name}}</span>
+                                <p v-else>Tags: none</p>
                             </div>
                             <!-- /tags -->
+
+                            <!-- link to post details -->
+                            <a href="#">Details</a>
+                            <!-- /link to post details -->
                             
                             <!-- hr separatore per ogni post  -->
                             <hr style="height:3px">
@@ -49,6 +54,16 @@
 
             </div>
         </div>
+
+        <!-- pagination -->
+        <!-- alla funzione getPosts passo la pagina corrente che, al click, cambierà tra previous e next e viceversa -->
+        <nav aria-label="pag">
+            <ul class="pagination d-flex justify-content-center mt-3">
+                <li class="page-item"><a class="page-link" href="#" @click="getPosts(pagination.current_page -1)">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#" @click="getPosts(pagination.current_page +1)">Next</a></li>
+            </ul>
+        </nav>
+        <!-- /pagination -->
     </main>
     
 </template>
@@ -60,13 +75,17 @@ export default {
     name: "Main",
     data() {
         return {
-            posts: [] // array vuoto che verrà popolato con chiamata api
+            posts: [], // array vuoto che verrà popolato con chiamata api
+            pagination: {}   // variabile dove salvo il valore corrente della pagination
         }
     },
     methods:{
-        getPosts(){
-            axios.get('http://127.0.0.1:8000/api/posts').then((Response) =>{
-                this.posts = Response.data;
+        getPosts(page){        // passando come argomento ->page -> poi posso includerlo come querystring nella mia chiamata api e far funzionare la funzione paginate
+            
+            axios.get('http://127.0.0.1:8000/api/posts?page=' + page).then((Response) =>{
+                this.pagination = Response.data;
+                this.posts = Response.data.data;
+                console.log(Response.data.data);
             })
         }
     },
@@ -79,4 +98,8 @@ export default {
 
 <style lang="scss" scoped>
 
+
+a{
+   color: #FF69B4;
+}
 </style>

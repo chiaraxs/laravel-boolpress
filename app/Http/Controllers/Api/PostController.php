@@ -10,8 +10,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
-        $posts->load('user', 'category', 'tags');    // aggiunge anche i dettagli user, tag e category
+        $posts = Post::paginate(4);     // funzione che modifica la struttura dei dati e li divide in pagine (qui 4 elementi x pag)
+        $posts->load('user', 'category', 'tags');    // aggiunge anche i dettagli user, tags e category
 
         return response()->json($posts);
     }
@@ -30,7 +30,7 @@ class PostController extends Controller
         $newPost->user_id = 1;   // 1 è l'id dell'user loggato
         $newPost->save();
 
-        
+
         return response()->json($newPost);
     }
 

@@ -11,6 +11,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $posts->load('user', 'category', 'tags');    // aggiunge anche i dettagli user, tags e category
+
         return response()->json($posts);
     }
 
@@ -35,6 +37,7 @@ class PostController extends Controller
     {
         // la funzione with -> inserisce nello show anche i tags/user/category (come fosse un join)
         // tags/user/category sono dichiarati nel model Post.php
+        // alternativa al with -> load
         $post = Post::where('id', $id)->with(['tags', 'user', 'category'])->first();
 
         return response()->json($post);

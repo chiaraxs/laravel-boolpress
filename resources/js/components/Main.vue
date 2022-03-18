@@ -1,30 +1,58 @@
 <template>
 
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row justify-content-center text-center mt-5">
-                <div class="col-md-8 mt-5">
-                    <h1>Benvenuto!</h1>
+    <main>
+        <div class="container-fluid">
+            <div class="container">
+                
+                <!-- welcome message -->
+                <div class="row justify-content-center text-center mt-5">
+                    <div class="col-md-8">
+                        <h1>Benvenuto!</h1>
+                    </div>
                 </div>
+                <!-- /welcome message -->
+
+                <!-- post -->
+                <div class="row justify-content-center text-center mt-5">
+                    <div class="card" style="width: 40rem;">
+                        <div class="card-body" v-for="post in posts" :key="post.id">
+                            <img src="#" class="card-img-top" alt="post_img">
+                            <h5 class="card-title">{{post.title}}</h5>
+                            <p class="card-text">{{post.content}}</p>
+                            <p class="card-text">Author: {{post.user.name}}</p>
+                            <p class="card-text">Date: {{post.created_at}}</p>
+                            <!-- <p class="card-text">Categories: {{post.category.type}}</p>  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /post -->
+
             </div>
         </div>
-
-        
-        <!-- <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div> --> 
-    </div>
-
+    </main>
+    
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    
+    name: "Main",
+    data() {
+        return {
+            posts: [] // array vuoto che verrà popolato con chiamata api
+        }
+    },
+    methods:{
+        getPosts(){
+            axios.get('http://127.0.0.1:8000/api/posts').then((Response) =>{
+                this.posts = Response.data;
+            })
+        }
+    },
+    mounted(){
+        this.getPosts();
+    }
 }
 </script>
 

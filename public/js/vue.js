@@ -1968,6 +1968,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Main",
@@ -2572,7 +2592,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "footer",
-      { staticClass: "bg-light shadow-sm py-3 fixed-bottom" },
+      { staticClass: "bg-light py-3 fixed-bottom border-top border-dark" },
       [
         _c("p", { staticClass: "text-center text-dark" }, [
           _vm._v("Made by Chiara, with love ♥"),
@@ -2615,28 +2635,61 @@ var render = function () {
               "div",
               { staticClass: "card", staticStyle: { width: "40rem" } },
               _vm._l(_vm.posts, function (post) {
-                return _c("div", { key: post.id, staticClass: "card-body" }, [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: { src: "#", alt: "post_img" },
-                  }),
-                  _vm._v(" "),
-                  _c("h5", { staticClass: "card-title" }, [
-                    _vm._v(_vm._s(post.title)),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(post.content)),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v("Author: " + _vm._s(post.user.name)),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v("Date: " + _vm._s(post.created_at)),
-                  ]),
-                ])
+                return _c(
+                  "div",
+                  { key: post.id, staticClass: "card-body" },
+                  [
+                    _c("img", {
+                      staticClass: "profile-pic rounded",
+                      attrs: {
+                        src: "https://unsplash.it/300/300",
+                        alt: "post_img",
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("h5", { staticClass: "card-title fw-bold my-3" }, [
+                      _vm._v(_vm._s(post.title)),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(post.content)),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(
+                        "Author: " +
+                          _vm._s(post.user.name) +
+                          "\n                        "
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "\n                        Date: " +
+                          _vm._s(post.created_at)
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    post.category
+                      ? _c("p", { staticClass: "card-text" }, [
+                          _vm._v("Category: " + _vm._s(post.category.type)),
+                        ])
+                      : _c("p", [_vm._v("Category: none")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.tags, function (tag) {
+                      return _c("div", { key: tag.id }, [
+                        tag.name
+                          ? _c(
+                              "span",
+                              { staticClass: "badge badge-pink mx-1 mb-3" },
+                              [_vm._v("#" + _vm._s(tag.name))]
+                            )
+                          : _vm._e(),
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("hr", { staticStyle: { height: "3px" } }),
+                  ],
+                  2
+                )
               }),
               0
             ),
@@ -2656,7 +2709,9 @@ var staticRenderFns = [
       { staticClass: "row justify-content-center text-center mt-5" },
       [
         _c("div", { staticClass: "col-md-8" }, [
-          _c("h1", [_vm._v("Benvenuto!")]),
+          _c("h1", [_vm._v("Welcome!")]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Today's posts")]),
         ]),
       ]
     )
@@ -2692,9 +2747,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "nav",
-      {
-        staticClass: "navbar navbar-light bg-light navbar-expand-md shadow-sm",
-      },
+      { staticClass: "navbar navbar-light bg-light navbar-expand-md shadow" },
       [
         _c("div", { staticClass: "container" }, [
           _c("a", { staticClass: "navbar-brand", attrs: { href: "/home" } }, [

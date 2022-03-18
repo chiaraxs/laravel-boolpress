@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-light navbar-expand-md shadow-sm" style="background-color: #FFB6C1;">
+    <nav class="navbar navbar-light bg-light navbar-expand-md shadow-sm">
         <!-- container navbar -->
         <div class="container">
         <a class="navbar-brand" href="/home">Boolpress</a>

@@ -1,6 +1,6 @@
 <template>
 
-    <footer class="py-3 fixed-bottom" style="background-color: #D3D3D3;">
+    <footer class="bg-light shadow-sm py-3 fixed-bottom">
         <p class="text-center text-dark">Made by Chiara, with love &hearts;</p>
   </footer>
 

@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// rotta che rimanda alla view pubblica welcome.blade
+// rotta che rimanda alla view pubblica home.blade -> app.vue
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();

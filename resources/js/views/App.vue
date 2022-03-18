@@ -4,15 +4,9 @@
        <Navbar></Navbar>
        <!-- / vue navbar in resources/js/components -->
             
-        <!-- view-> home.blade-->
-        <div class="container">
-            <div class="row justify-content-center text-center mt-5">
-                <div class="col-md-8">
-                    <h1>Benvenuto!</h1>
-                </div>
-            </div>
-        </div>
-        <!-- /view-> home.blade -->
+        <!-- vue main in resources/js/components -->
+        <Main></Main>
+        <!-- vue main in resources/js/components -->
         
         <!-- vue footer in resources/js/components -->    
         <Footer></Footer>
@@ -21,12 +15,15 @@
 </template>
 
 <script>
-import Footer from '../components/Footer.vue'
 import Navbar from '../components/Navbar.vue'
+import Main from '../components/Main.vue'
+import Footer from '../components/Footer.vue'
+
     export default {
   components: { 
         Navbar, 
-        Footer 
+        Main,
+        Footer,
     }
 }
 </script>

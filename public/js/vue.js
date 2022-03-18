@@ -2003,6 +2003,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Main",
@@ -3300,70 +3305,69 @@ var render = function () {
               "div",
               { staticClass: "card", staticStyle: { width: "40rem" } },
               _vm._l(_vm.posts, function (post) {
-                return _c(
-                  "div",
-                  { key: post.id, staticClass: "card-body" },
-                  [
-                    _c("img", {
-                      staticClass: "profile-pic rounded",
-                      attrs: {
-                        src: "https://unsplash.it/300/300",
-                        alt: "post_img",
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("h5", { staticClass: "card-title fw-bold my-3" }, [
-                      _vm._v(_vm._s(post.title)),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _vm._v(_vm._s(post.content)),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _vm._v(
-                        "Author: " +
-                          _vm._s(post.user.name) +
-                          "\n                        "
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "\n                        Date: " +
-                          _vm._s(post.created_at)
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    post.category
-                      ? _c("p", { staticClass: "card-text" }, [
-                          _vm._v("Category: " + _vm._s(post.category.type)),
-                        ])
-                      : _c("p", [_vm._v("Category: none")]),
-                    _vm._v(" "),
+                return _c("div", { key: post.id, staticClass: "card-body" }, [
+                  _c("img", {
+                    staticClass: "profile-pic rounded",
+                    attrs: {
+                      src: "https://unsplash.it/300/300?p=" + post.id,
+                      alt: "post_img",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "card-title fw-bold my-3" }, [
+                    _vm._v(_vm._s(post.title)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(_vm._s(post.content)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "Author: " +
+                        _vm._s(post.user.name) +
+                        "\n                        "
+                    ),
+                    _c("br"),
+                    _vm._v(
+                      "\n                        Date: " +
+                        _vm._s(post.created_at) +
+                        "\n                        "
+                    ),
+                    _c("br"),
+                    _vm._v(
+                      "\n                        Last update: " +
+                        _vm._s(post.updated_at)
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  post.category
+                    ? _c("p", { staticClass: "card-text" }, [
+                        _vm._v("Category: " + _vm._s(post.category.type)),
+                      ])
+                    : _c("p", [_vm._v("Category: none")]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-center" },
                     _vm._l(post.tags, function (tag) {
-                      return _c(
-                        "div",
-                        {
-                          key: tag.id,
-                          staticClass: "d-flex justify-content-center",
-                        },
-                        [
-                          tag.name
-                            ? _c(
-                                "span",
-                                { staticClass: "badge badge-pink mx-1 mb-3" },
-                                [_vm._v("#" + _vm._s(tag.name))]
-                              )
-                            : _c("p", [_vm._v("Tags: none")]),
-                        ]
-                      )
+                      return _c("div", { key: tag.id }, [
+                        tag.name
+                          ? _c(
+                              "span",
+                              { staticClass: "badge badge-pink mx-1 mb-3" },
+                              [_vm._v("#" + _vm._s(tag.name))]
+                            )
+                          : _c("p", [_vm._v("Tags: none")]),
+                      ])
                     }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Details")]),
-                    _vm._v(" "),
-                    _c("hr", { staticStyle: { height: "3px" } }),
-                  ],
-                  2
-                )
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("Details")]),
+                  _vm._v(" "),
+                  _c("hr", { staticStyle: { height: "3px" } }),
+                ])
               }),
               0
             ),

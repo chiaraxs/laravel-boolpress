@@ -18,13 +18,16 @@
                     <div class="card" style="width: 40rem;">
 
                         <!-- v-for -->
+                        <!-- imgs random per ogni post.id ad ogni refresh -->
                         <div class="card-body" v-for="post in posts" :key="post.id">
-                            <img class="profile-pic rounded" src="https://unsplash.it/300/300" alt="post_img"> 
+                            <img class="profile-pic rounded" :src="'https://unsplash.it/300/300?p=' + post.id" alt="post_img"> 
                             <h5 class="card-title fw-bold my-3">{{post.title}}</h5>
                             <p class="card-text">{{post.content}}</p>
                             <p class="card-text">Author: {{post.user.name}}
                             <br>
-                            Date: {{post.created_at}}</p>
+                            Date: {{post.created_at}}
+                            <br>
+                            Last update: {{post.updated_at}}</p>
 
                             <!-- category -->
                             <p v-if="post.category" class="card-text">Category: {{post.category.type}}</p> 
@@ -32,9 +35,11 @@
                             <!-- /category -->
 
                             <!-- tags -->
-                            <div class="d-flex justify-content-center" v-for="tag in post.tags" :key="tag.id" >
-                                <span v-if="tag.name" class="badge badge-pink mx-1 mb-3">#{{tag.name}}</span>
-                                <p v-else>Tags: none</p>
+                            <div class="d-flex justify-content-center">
+                                <div v-for="tag in post.tags" :key="tag.id" >
+                                    <span v-if="tag.name" class="badge badge-pink mx-1 mb-3">#{{tag.name}}</span>
+                                    <p v-else>Tags: none</p>
+                                </div>
                             </div>
                             <!-- /tags -->
 

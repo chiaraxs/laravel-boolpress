@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 // nell'uri -> 'api' è sottinteso
 // in action -> 'api' va specificato
 Route::get('/posts', 'Api\PostController@index');
-Route::post('/posts/{post}', 'Api\PostController@show');  // qualsiasi numero mettiamo -> http://127.0.0.1:8000/api/posts/13 -> cercherà il post con l'id corrispondente (se esiste)
+Route::get('/posts/{post}', 'Api\PostController@show');  // qualsiasi numero mettiamo -> http://127.0.0.1:8000/api/posts/13 -> cercherà il post con l'id corrispondente (se esiste)
 Route::post('/posts', 'Api\PostController@store');
 
 

@@ -2147,6 +2147,59 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2158,6 +2211,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2166,11 +2220,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getPost: function getPost() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/posts/' + this.$route.params.post);
-      this.post = Response.data; // chiamata api per recuperare i dettagli dei singoli posts
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/posts/' + this.$route.params.post).then(function (Response) {
+        _this.post = Response.data;
+      }); // chiamata api per recuperare i dettagli dei singoli posts
+    },
+    getDate: function getDate(date) {
+      return dayjs__WEBPACK_IMPORTED_MODULE_1___default()(date).format('ddd, MMM D, YYYY h:mm A');
     }
   },
   mounted: function mounted() {
+    console.log(this.$route.params.post);
     this.getPost();
   }
 });
@@ -2718,7 +2779,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "footer",
-      { staticClass: "bg-light py-3 border-top border-dark" },
+      { staticClass: "bg-light py-3 border-top border-dark fixed-bottom" },
       [
         _c("p", { staticClass: "text-center text-dark" }, [
           _vm._v("Made by Chiara, with love ♥"),
@@ -3067,11 +3128,86 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._v("\n    Details\n    "),
-    _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.post.content))]),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card my-5" }, [
+          _c("div", { staticClass: "card-header d-flex title text-center" }, [
+            _vm._v(
+              "\n                    " +
+                _vm._s(_vm.post.title) +
+                "\n                "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v(
+              "\n                    " +
+                _vm._s(_vm.post.content) +
+                "\n                "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "ms-3" }, [
+              _vm._v(
+                " User: " +
+                  _vm._s(_vm.post.user.name) +
+                  " \n                    "
+              ),
+              _c("br"),
+              _vm._v(
+                "\n                    Mail: " + _vm._s(_vm.post.user.email)
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "ms-3 fw-light" }, [
+              _c("span", { staticClass: "text-decoration-underline" }, [
+                _vm._v("Post details:"),
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(
+                "\n                        Update: " +
+                  _vm._s(_vm.getDate(_vm.post.updated_at)) +
+                  "\n                        "
+              ),
+              _c("br"),
+              _vm._v(
+                "\n                        Last update: " +
+                  _vm._s(_vm.getDate(_vm.post.last_update_at)) +
+                  "\n                    "
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm.post.category
+              ? _c("p", { staticClass: "card-text ms-3" }, [
+                  _vm._v("Category: " + _vm._s(_vm.post.category.type)),
+                ])
+              : _c("p", { staticClass: "ms-3" }, [_vm._v("Category: none")]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex justify-content-center" },
+            _vm._l(_vm.post.tags, function (tag) {
+              return _c("div", { key: tag.id }, [
+                tag.name
+                  ? _c("span", { staticClass: "badge badge-pink mx-1 mb-3" }, [
+                      _vm._v("#" + _vm._s(tag.name)),
+                    ])
+                  : _c("p", [_vm._v("Tags: none")]),
+              ])
+            }),
+            0
+          ),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []

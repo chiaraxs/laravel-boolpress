@@ -41,6 +41,7 @@ class PostController extends Controller
         // alternativa al with -> load
         $post = Post::where('slug', $slug)->with(['tags', 'user', 'category'])->first();
 
+
         return response()->json($post);
     }
 }

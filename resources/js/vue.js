@@ -13,6 +13,8 @@ window.Vue = require('vue');
 
 // import del componente resources/js/views/App.vue
 import App from './views/App.vue'
+// import di router in router.js
+import router from './router';
 
 
 /**
@@ -23,5 +25,6 @@ import App from './views/App.vue'
 
 const app = new Vue({
     el: '#app',
-    render: h => h(App)   // mostra App.vue all'avvio di Vue
+    render: h => h(App),   // mostra App.vue all'avvio di Vue
+    router: router         // dichiarazione di variabile 'router' con chiave -> router
 });

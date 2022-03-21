@@ -4,8 +4,8 @@
        <Navbar></Navbar>
        <!-- / vue navbar in resources/js/components -->
             
-        <!-- vue main in resources/js/components -->
-        <Main></Main>
+        <!-- router-view che rimanda a resources/js/pages/home.vue -> è uguale a vue main in resources/js/components -->
+        <router-view></router-view>
         <!-- vue main in resources/js/components -->
         
         <!-- vue footer in resources/js/components -->    
@@ -16,7 +16,6 @@
 
 <script>
 import Navbar from '../components/Navbar.vue';
-import Main from '../components/Main.vue';
 import Footer from '../components/Footer.vue';
 
 
@@ -24,7 +23,6 @@ import Footer from '../components/Footer.vue';
 export default {
   components: { 
         Navbar, 
-        Main,
         Footer,
     }
 }

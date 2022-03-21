@@ -10,12 +10,29 @@ Vue.use(VueRouter);
 // 3. vueRouter instances
 // la chiave 'routes' -> accetta solo un array di oggetti->le rotte
 const router = new VueRouter({
+    mode: 'history',           // la metodologia history-> elimina il # dall'url
     routes: [
-        { path: '/', component: Home, name: 'home.index' },  // homepage route 
-        { path:'/contacts', component: Contacts, name: 'contacts.index'},  // contacts route 
+        {
+            path: '//',     // il doppio slash -> serve perchè con il singolo slash non riconsce la rotta alla home
+            component: Home,
+            name: 'home.index',
+            meta: { title: 'Homepage', linkText: 'Home' }
+        },  // homepage route  -> http://127.0.0.1:8000/
+        {
+            path: '/contacts',
+            component: Contacts,
+            name: 'contacts.index',
+            meta: { title: 'Contacts', linkText: 'Contacts' }
+        },  // contacts route -> http://127.0.0.1:8000/contacts
     ],
 });
 
+// 5.
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title;  // 1. prima assegna un title per ogni meta
+
+    next(); // 2. e poi vai avanti
+})
 
 // 4. instance export -> la rende pubblica e accessibile dall'esterno -> da vue.js
 export default router;

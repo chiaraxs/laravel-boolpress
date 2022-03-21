@@ -25,9 +25,9 @@
                             <p class="card-text">{{post.content}}</p>
                             <p class="card-text">Author: {{post.user.name}}
                             <br>
-                            Date: {{post.created_at}}
+                            Date: {{getDate(post.updated_at)}}
                             <br>
-                            Last update: {{post.updated_at}}</p>
+                            Last update: {{getDate(post.last_update_at)}}
 
                             <!-- category -->
                             <p v-if="post.category" class="card-text">Category: {{post.category.type}}</p> 
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-// import dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import axios from 'axios';
 
 
@@ -96,8 +96,9 @@ export default {
                 console.log(Response.data.data);
             })
         },
-        // getDate(date){
-        // }
+        getDate(date){
+            return dayjs(date).format('ddd, MMM D, YYYY h:mm A');
+        },
     },
     mounted(){
         this.getPosts();

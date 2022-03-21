@@ -2102,6 +2102,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2952,6 +2954,46 @@ var render = function () {
         _c("div", { staticClass: "container" }, [
           _vm._m(0),
           _vm._v(" "),
+          _c("nav", { attrs: { "aria-label": "pag" } }, [
+            _c(
+              "ul",
+              { staticClass: "pagination d-flex justify-content-center mt-3" },
+              [
+                _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.getPosts(_vm.pagination.current_page - 1)
+                        },
+                      },
+                    },
+                    [_vm._v("Previous")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.getPosts(_vm.pagination.current_page + 1)
+                        },
+                      },
+                    },
+                    [_vm._v("Next")]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
           _c(
             "div",
             { staticClass: "row justify-content-center text-center mt-5" },
@@ -3045,46 +3087,6 @@ var render = function () {
             ]
           ),
         ]),
-      ]),
-      _vm._v(" "),
-      _c("nav", { attrs: { "aria-label": "pag" } }, [
-        _c(
-          "ul",
-          { staticClass: "pagination d-flex justify-content-center mt-3" },
-          [
-            _c("li", { staticClass: "page-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "page-link",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function ($event) {
-                      return _vm.getPosts(_vm.pagination.current_page - 1)
-                    },
-                  },
-                },
-                [_vm._v("Previous")]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "page-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "page-link",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function ($event) {
-                      return _vm.getPosts(_vm.pagination.current_page + 1)
-                    },
-                  },
-                },
-                [_vm._v("Next")]
-              ),
-            ]),
-          ]
-        ),
       ]),
     ]),
   ])

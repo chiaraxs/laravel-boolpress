@@ -16,6 +16,16 @@
                 </div>
                 <!-- /welcome message -->
 
+                <!-- pagination -->
+                <!-- alla funzione getPosts passo la pagina corrente che, al click, cambierà tra previous e next e viceversa -->
+                <nav aria-label="pag">
+                    <ul class="pagination d-flex justify-content-center mt-3">
+                        <li class="page-item"><a class="page-link" href="#" @click="getPosts(pagination.current_page -1)">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#" @click="getPosts(pagination.current_page +1)">Next</a></li>
+                    </ul>
+                </nav>
+                <!-- /pagination -->
+                
                 <!-- post -->
                 <div class="row justify-content-center text-center mt-5">
                     <div class="card" style="width: 40rem;">
@@ -63,15 +73,7 @@
             </div>
         </div>
 
-        <!-- pagination -->
-        <!-- alla funzione getPosts passo la pagina corrente che, al click, cambierà tra previous e next e viceversa -->
-        <nav aria-label="pag">
-            <ul class="pagination d-flex justify-content-center mt-3">
-                <li class="page-item"><a class="page-link" href="#" @click="getPosts(pagination.current_page -1)">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#" @click="getPosts(pagination.current_page +1)">Next</a></li>
-            </ul>
-        </nav>
-        <!-- /pagination -->
+        
     </main>
     </div>
   

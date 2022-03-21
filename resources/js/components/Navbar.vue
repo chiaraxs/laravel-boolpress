@@ -49,7 +49,8 @@ export default {
         }
     },
     mounted(){
-        this.routes = this.$router.getRoutes();    // il getRoutes-> prende tutte le rotte dichiarate nell'istanza in router.js
+        this.routes = this.$router.getRoutes().filter((route)=>route.meta.linkText);   
+         // il getRoutes-> filtra e prende tutte le rotte che sono dichiarate nell'istanza in router.js -> restitutendo un true
     }
     
 }

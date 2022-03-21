@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <h1>Home</h1>
+
 
         <main>
         <div class="container-fluid">
@@ -47,7 +47,7 @@
                             <!-- /tags -->
 
                             <!-- link to post details -->
-                            <a href="#">Details</a>
+                            <router-link :to="{ name:'posts.show', params: { post: post.slug } }">Dettagli</router-link>
                             <!-- /link to post details -->
                             
                             <!-- hr separatore per ogni post  -->

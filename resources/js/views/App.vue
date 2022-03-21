@@ -4,9 +4,9 @@
        <Navbar></Navbar>
        <!-- / vue navbar in resources/js/components -->
             
-        <!-- router-view che rimanda a resources/js/pages/home.vue -> è uguale a vue main in resources/js/components -->
+        <!-- router-view che rimanda al componente indicato dal router per quella specifica rotta (home | contacts ) -->
         <router-view></router-view>
-        <!-- vue main in resources/js/components -->
+        <!-- router-view -->
         
         <!-- vue footer in resources/js/components -->    
         <Footer></Footer>

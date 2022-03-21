@@ -34,12 +34,12 @@ class PostController extends Controller
         return response()->json($newPost);
     }
 
-    public function show($id)
+    public function show($slug)
     {
         // la funzione with -> inserisce nello show anche i tags/user/category (come fosse un join)
         // tags/user/category sono dichiarati nel model Post.php
         // alternativa al with -> load
-        $post = Post::where('id', $id)->with(['tags', 'user', 'category'])->first();
+        $post = Post::where('slug', $slug)->with(['tags', 'user', 'category'])->first();
 
         return response()->json($post);
     }

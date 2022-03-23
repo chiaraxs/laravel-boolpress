@@ -15,10 +15,10 @@
 
                     
                     {{-- form --}}
-                    <form action="{{ route('admin.posts.store') }}" method="post">
+                    <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
-                        {{-- title gestuti con errori & old --}}
+                        {{-- title gestiti con errori & old --}}
                         <div class="mb-2 ">
                             <label for="title" class="me-4">Title</label>
                             <input type="text" name="title" placeholder="Insert Title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required>
@@ -29,6 +29,18 @@
 
                         </div>
                         {{-- /title --}}
+
+                        {{-- post img --}}
+                        <div class="mb-3">
+                            <label class="fw-bold">Post's Image</label>
+                            <input type="file" name="img" class="form-control @error('img') is-invalid @enderror" placeholder="Insert img" required>
+                            
+                            @error('img')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            
+                        </div>
+                        {{-- /post img --}}
 
                         {{-- content gestito con errori & old --}}
                         <div>

@@ -30,7 +30,6 @@ class PostController extends Controller
         $newPost->user_id = 1;   // 1 è l'id dell'user loggato
         $newPost->save();
 
-
         return response()->json($newPost);
     }
 

@@ -11,7 +11,7 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+                    <form action="{{ route('admin.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("put")
 
@@ -20,19 +20,27 @@
                             <label class="fw-bold">Title</label>
                             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Insert title" value="{{ old('title', $post->title) }}" required>
                             @error('title')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         {{-- /title --}}
 
+                        {{-- post img --}}
+                        <div class="mb-3">
+                            <label class="fw-bold">Post's Image</label>
+                            <input type="file" name="img" class="form-control @error('img') is-invalid @enderror" placeholder="Insert img" required>
+                            @error('img')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        {{-- /post img --}}
 
                         {{-- content --}}
                         <div class="mb-3">
                             <label class="fw-bold">Content</label>
                             <textarea name="content" rows="10" class="form-control @error('content') is-invalid @enderror" placeholder="Insert your post's content" required>{{ old('content', $post->content) }}</textarea>
-
                             @error('content')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         {{-- /content --}}

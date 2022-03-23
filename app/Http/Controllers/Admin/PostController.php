@@ -9,6 +9,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -51,6 +52,7 @@ class PostController extends Controller
             'content'=> 'required|min:10',
             'category_id'=>'nullable',
             'tags'=>'nullable',
+            'img'=> 'nullable',
         ]);
 
         $post = new Post();
@@ -59,6 +61,13 @@ class PostController extends Controller
 
         $post->slug = $this->generateUniqueSlug($request['title']);
         $post->user_id = Auth::user()->id;
+
+        // assegazione img e controllo esistenza post img e storage
+        if(key_exists('img', $data)){
+            $post->img = Storage::put('img', $data['img']);     // specifico la cartella in public/storage/img (oppure null oppure stringa vuota) e come secondo argomento -> l'istanza img in data 
+        }
+        // /assegazione img e controllo esistenza post img e storage
+
 
         $post->save();
 
@@ -109,11 +118,14 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+
         $data = $request->validate([
             'title' => 'required|min:5',
-            'content' => 'required|min:10|max:200',
+            'content' => 'required|min:10',
             'category_id'=> 'nullable|exists:categories,id',
-            'tags'=> 'nullable|exists:tags,id'    // in fase di validazione quando riceve il tags e per ogni tags cercherà se esiste nel db un tag con quell'id, se non esiste avrà un errore
+            'tags'=> 'nullable|exists:tags,id',    // in fase di validazione quando riceve il tags e per ogni tags cercherà se esiste nel db un tag con quell'id, se non esiste avrà un errore
+            'img'=> 'nullable',
         ]);
 
         $post = Post::findOrFail($id);
@@ -124,6 +136,23 @@ class PostController extends Controller
         if ($data['title'] !== $post->title) {
             $data['slug'] = $this->generateUniqueSlug($data['title']);
         }
+
+        // controllo esistenza post img e update
+        if (key_exists('img', $data)){
+            
+            // controllo esistenza image old -> se esiste già un'img x post, cancella la vecchia e salva la nuova caricata
+            if($post->img){
+                Storage::delete($post->img);
+            }
+            // /controllo esistenza image old 
+            
+            // storage in cartella storage/img del $data -> img
+            $post->img = Storage::put('img', $data ['img']);
+
+            // save del post aggiornato con i $data
+            $post->save();
+        }
+        // /controllo esistenza post img e update
 
 
         $post->update($data);

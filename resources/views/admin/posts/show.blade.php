@@ -20,6 +20,14 @@
                 </div>
                 {{-- /title --}}
 
+                {{-- post img --}}
+                @if ($post->img)
+                    <img src="{{ asset('storage/' . $post->img) }}" class="img-fluid" alt="">
+                @else
+                    <p class="text-center">No Image</p>
+                @endif
+                {{-- /post img --}}
+
                 {{-- content --}}
                 <div class="card-body">
 

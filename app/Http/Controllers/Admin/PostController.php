@@ -189,7 +189,9 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
 
-        $post->tags()->detach();
+        $post->tags()->detach();     // per far funzionare correttamente il softdelete senza perdere le relazioni, 
+                                    // questa riga del detach() andrebbe commentata -> basta solo il delete()
+        
         $post->delete();
         return redirect()->route('admin.posts.index');
     

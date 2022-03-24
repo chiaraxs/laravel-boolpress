@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;          // -> cancella i post ma restano comunque in memoria nel db (da attivare in Admin/PostController - riga 192)
+    
     protected $fillable = [
         'title',
         'content',

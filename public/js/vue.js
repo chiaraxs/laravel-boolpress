@@ -2059,6 +2059,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2069,7 +2092,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: '',
         email: '',
         message: ''
-      }
+      },
+      formErrors: null // variabile in cui salvo gli errori nel form -> di default è settata a null
+
     };
   },
   methods: {
@@ -2083,27 +2108,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _context.next = 3;
+                _this.formErrors = null; // resetto la variabile formErrors ad ogni refresh e la riporto a null
+
+                _context.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://127.0.0.1:8000/api/contacts', _this.formData);
 
-              case 3:
+              case 4:
                 Response = _context.sent;
                 Response.data;
                 _this.formSubmitted = true;
-                _context.next = 11;
+                _context.next = 13;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](0);
+
+                if (_context.t0.response.status === 422) {
+                  // 422: errore di validazione nel form
+                  _this.formErrors = _context.t0.response.data.errors; // qui salvo gli errori nella variabile -> formErrors
+                }
+
                 alert('Warning! There was an error in our system. Try again and check your data.');
 
-              case 11:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 9]]);
       }))();
     }
   }
@@ -3783,7 +3816,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container mt-5" }, [
     !_vm.formSubmitted
       ? _c("div", [
           _c("div", { staticClass: "mb-3" }, [
@@ -3821,6 +3854,12 @@ var render = function () {
                 },
               },
             }),
+            _vm._v(" "),
+            _vm.formErrors && _vm.formErrors.name
+              ? _c("span", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.formErrors.name)),
+                ])
+              : _vm._e(),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "mb-3" }, [
@@ -3858,6 +3897,12 @@ var render = function () {
                 },
               },
             }),
+            _vm._v(" "),
+            _vm.formErrors && _vm.formErrors.email
+              ? _c("span", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.formErrors.email)),
+                ])
+              : _vm._e(),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "mb-3" }, [
@@ -3891,6 +3936,12 @@ var render = function () {
                 },
               },
             }),
+            _vm._v(" "),
+            _vm.formErrors && _vm.formErrors.message
+              ? _c("span", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.formErrors.message)),
+                ])
+              : _vm._e(),
           ]),
           _vm._v(" "),
           _c("div", [

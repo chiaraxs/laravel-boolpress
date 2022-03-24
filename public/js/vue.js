@@ -1998,6 +1998,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2006,7 +2008,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        message: ''
+      }
+    };
+  },
+  methods: {
+    formSubmit: function formSubmit() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://127.0.0.1:8000/api/contacts').then(function (Response) {
+        _this.formData = Response.data;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -2917,16 +2956,128 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "mb-3" }, [
+      _c(
+        "label",
+        {
+          staticClass: "form-label",
+          attrs: { for: "exampleFormControlInput1" },
+        },
+        [_vm._v("Your name")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formData.name,
+            expression: "formData.name",
+          },
+        ],
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          id: "exampleFormControlInput1",
+          placeholder: "Insert your name",
+        },
+        domProps: { value: _vm.formData.name },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.formData, "name", $event.target.value)
+          },
+        },
+      }),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "mb-3" }, [
+      _c(
+        "label",
+        {
+          staticClass: "form-label",
+          attrs: { for: "exampleFormControlInput1" },
+        },
+        [_vm._v("Your Email address")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formData.email,
+            expression: "formData.email",
+          },
+        ],
+        staticClass: "form-control",
+        attrs: {
+          type: "email",
+          id: "exampleFormControlInput1",
+          placeholder: "Insert your mail",
+        },
+        domProps: { value: _vm.formData.email },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.formData, "email", $event.target.value)
+          },
+        },
+      }),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "mb-3" }, [
+      _c(
+        "label",
+        {
+          staticClass: "form-label",
+          attrs: { for: "exampleFormControlTextarea1" },
+        },
+        [_vm._v("Your message")]
+      ),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formData.message,
+            expression: "formData.message",
+          },
+        ],
+        staticClass: "form-control",
+        attrs: { id: "exampleFormControlTextarea1", rows: "3" },
+        domProps: { value: _vm.formData.message },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.formData, "message", $event.target.value)
+          },
+        },
+      }),
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-plum",
+          attrs: { type: "submit" },
+          on: { click: _vm.formSubmit },
+        },
+        [_vm._v("Send")]
+      ),
+    ]),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Contacts")])])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

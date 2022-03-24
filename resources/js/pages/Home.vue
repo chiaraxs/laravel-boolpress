@@ -13,9 +13,17 @@
                         <h1>Welcome!</h1>
                         <h5>Today's posts</h5>
                     </div>
+
+                    <!-- filter -->
+                    <div>
+                        <input type="text" class="form-input" placeholder="Search" v-model="searchPost" @keydown.enter="filterPost">
+                    </div>
+                    <!-- /filter -->
+
                 </div>
                 <!-- /welcome message -->
 
+                
                 <!-- pagination -->
                 <!-- alla funzione getPosts passo la pagina corrente che, al click, cambierà tra previous e next e viceversa -->
                 <nav aria-label="pag">
@@ -91,12 +99,13 @@ export default {
         return {
             posts: [], // array vuoto che verrà popolato con chiamata api
             pagination: {},   // variabile dove salvo il valore corrente della pagination
+            searchPost: '',   // variabile vuota che verrà popolata dall'input text di filter
         }
     },
     methods:{
-        getPosts(page){        // passando come argomento ->page -> poi posso includerlo come querystring nella mia chiamata api e far funzionare la funzione paginate
+        getPosts(page, searchPost){        // passando come argomento ->page -> poi posso includerlo come querystring nella mia chiamata api e far funzionare la funzione paginate
             
-            axios.get('http://127.0.0.1:8000/api/posts?page=' + page).then((Response) =>{
+            axios.get('http://127.0.0.1:8000/api/posts?page=' + page + searchPost).then((Response) =>{
                 this.pagination = Response.data;
                 this.posts = Response.data.data;
                 console.log(Response.data.data);
@@ -104,6 +113,9 @@ export default {
         },
         getDate(date){
             return dayjs(date).format('ddd, MMM D, YYYY h:mm A');
+        },
+        filterPost(){
+            this.getPosts(1, this.searchPost);    // richiamo la funzione getPosts e gli passo 2 argomenti (la pagina di riferimento e la stringa da ricercare)
         },
     },
     mounted(){

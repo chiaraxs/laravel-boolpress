@@ -2238,6 +2238,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2246,16 +2254,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       posts: [],
       // array vuoto che verrà popolato con chiamata api
-      pagination: {} // variabile dove salvo il valore corrente della pagination
+      pagination: {},
+      // variabile dove salvo il valore corrente della pagination
+      searchPost: '' // variabile vuota che verrà popolata dall'input text di filter
 
     };
   },
   methods: {
-    getPosts: function getPosts(page) {
+    getPosts: function getPosts(page, searchPost) {
       var _this = this;
 
       // passando come argomento ->page -> poi posso includerlo come querystring nella mia chiamata api e far funzionare la funzione paginate
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://127.0.0.1:8000/api/posts?page=' + page).then(function (Response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://127.0.0.1:8000/api/posts?page=' + page + searchPost).then(function (Response) {
         _this.pagination = Response.data;
         _this.posts = Response.data.data;
         console.log(Response.data.data);
@@ -2263,6 +2273,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDate: function getDate(date) {
       return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).format('ddd, MMM D, YYYY h:mm A');
+    },
+    filterPost: function filterPost() {
+      this.getPosts(1, this.searchPost); // richiamo la funzione getPosts e gli passo 2 argomenti (la pagina di riferimento e la stringa da ricercare)
     }
   },
   mounted: function mounted() {
@@ -3993,7 +4006,46 @@ var render = function () {
     _c("main", [
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "container" }, [
-          _vm._m(0),
+          _c(
+            "div",
+            { staticClass: "row justify-content-center text-center mt-5" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchPost,
+                      expression: "searchPost",
+                    },
+                  ],
+                  staticClass: "form-input",
+                  attrs: { type: "text", placeholder: "Search" },
+                  domProps: { value: _vm.searchPost },
+                  on: {
+                    keydown: function ($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.filterPost.apply(null, arguments)
+                    },
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.searchPost = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]
+          ),
           _vm._v(" "),
           _c("nav", { attrs: { "aria-label": "pag" } }, [
             _c(
@@ -4137,17 +4189,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "row justify-content-center text-center mt-5" },
-      [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("h1", [_vm._v("Welcome!")]),
-          _vm._v(" "),
-          _c("h5", [_vm._v("Today's posts")]),
-        ]),
-      ]
-    )
+    return _c("div", { staticClass: "col-md-8" }, [
+      _c("h1", [_vm._v("Welcome!")]),
+      _vm._v(" "),
+      _c("h5", [_vm._v("Today's posts")]),
+    ])
   },
 ]
 render._withStripped = true

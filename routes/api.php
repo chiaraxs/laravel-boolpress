@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 
 // rotta raggiungibile con -> http://127.0.0.1:8000/api/posts

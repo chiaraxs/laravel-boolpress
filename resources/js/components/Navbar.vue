@@ -26,10 +26,12 @@
                 <!-- /Left Side Of Navbar -->
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="/login" v-if="!user">Login</a>
+                        <a class="nav-link" href="/admin" v-else>{{user.name}}</a>
                     </li>
+                    
                 </ul>
                 <!-- /Right Side Of Navbar -->  
             </div>
@@ -41,16 +43,30 @@
 
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'Navbar',
     data(){
         return{
-            routes: []
+            routes: [],
+            user: null,    // variabile fissata di default a null -> è not null quando l'utente è loggato
         }
+    },
+    methods: {
+        getUser(){
+            axios.get('/api/user').then(Response =>{
+                this.user = Response.data;     // se l'utente è loggato, stampo i dettagli
+            })
+            .catch((error)=> {
+                console.error('Not logged-in user');   // altrimenti -> error
+            })
+        },
     },
     mounted(){
         this.routes = this.$router.getRoutes().filter((route)=>route.meta.linkText);   
-         // il getRoutes-> filtra e prende tutte le rotte che sono dichiarate nell'istanza in router.js -> restitutendo un true
+        // il getRoutes-> filtra e prende tutte le rotte che sono dichiarate nell'istanza in router.js -> restitutendo un true
+        this.getUser();
     }
     
 }
